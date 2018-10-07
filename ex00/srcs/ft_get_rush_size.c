@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_get_rush_size(char *str, int *width, int *height)
+int	ft_get_rush_size(char *str, int *width, int *height)
 {
-	int		i;
-	int		width_temp;
+	int i;
+	int width_temp;
 
 	i = 0;
 	width_temp = 0;
@@ -31,11 +31,9 @@ int		ft_get_rush_size(char *str, int *width, int *height)
 		}
 		else
 		{
-			if (width_temp == 0)
+			if (width_temp++ == 0)
 				(*height)++;
-			width_temp++;
 		}
-			
 		i++;
 	}
 	return (1);
