@@ -6,7 +6,7 @@
 /*   By: ccumming <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 12:55:22 by ccumming          #+#    #+#             */
-/*   Updated: 2018/10/07 13:26:54 by ccumming         ###   ########.fr       */
+/*   Updated: 2018/10/07 13:51:43 by ccumming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ int		ft_get_rush_size(char *str, int *width, int *height)
 					return (0);
 			}
 			width_temp = 0;
-			*height++;
+			if (str[i] == '\n' && str[i + 1] == '\0')
+				return (1);
+			else
+				*height++;
 		}
 		i++;
 	}
