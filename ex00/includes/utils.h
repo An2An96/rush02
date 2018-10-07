@@ -13,6 +13,9 @@
 #ifndef UTILS_H
 # define UTILS_H
 
+#include <stdlib.h>
+#include <unistd.h>
+
 void	ft_putchar(char c);
 void	ft_putstr(char *str);
 void	ft_putnbr(int nb);
