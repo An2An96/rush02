@@ -17,26 +17,25 @@ int		ft_get_rush_size(char *str, int *width, int *height)
 
 	i = 0;
 	width_temp = 0;
+	*width = 0;
 	*height = 1;
 	while (str[i] != '\0')
 	{
-		if (str[i] != '\n')
-			width_temp++;
 		if (str[i] == '\n')
 		{
-			if (*height == 1)
+			if (*width == 0)
 				*width = width_temp;
-			else
-			{
-				if (*width != width_temp)
-					return (0);
-			}
+			else if (*width != width_temp)
+				return (0);
 			width_temp = 0;
-			if (str[i] == '\n' && str[i + 1] == '\0')
-				return (1);
-			else
-				(*height)++;
 		}
+		else
+		{
+			if (width_temp == 0)
+				(*height)++;
+			width_temp++;
+		}
+			
 		i++;
 	}
 	return (1);
