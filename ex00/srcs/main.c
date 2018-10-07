@@ -12,43 +12,64 @@
 
 #include "main.h"
 
-void	handler(char *str)
+void	ft_display_result(int types[4], int width, int height)
 {
-	//printf("handler start");
 	int i;
-	int cols;
-	int rows;
-	int types[3] = { -1, -1, -1 };
-	
-	if (ft_get_rush_size(str, &cols, &rows) == 0)
+	int check;
+
+	i = 0;
+	check = 0;
+	while (i < 5)
 	{
-		printf("Size error");
-	}
-	else if (ft_get_rush_type(str, cols, rows, types) == 0)
-	{
-		printf("Type error");
-	}
-	// else if (ft_valid(str, types, cols, rows) == 0)
-	// {
-	// 	printf("Valid error");
-	// }
-	else
-	{
-		i = 0;
-		while (types[i] != -1 && i < 3)
+		if (types[i])
 		{
-			printf("%s[rush-%02d] [%d] [%d]", (i ? " || " : ""), types[i], cols, rows);
-			i++;
+			if (check)
+				ft_putstr(" || ");
+			ft_putstr("[rush-0");
+			ft_putnbr(i);
+			ft_putstr("] [");
+			ft_putnbr(width);
+			ft_putstr("] [");
+			ft_putnbr(height);
+			ft_putstr("]");
+			check = 1;
 		}
+		i++;
 	}
-	
 }
 
-int	main()
+void	ft_handler(char *str)
 {
-	char buf[32];
-	char *res;
-	int size;
+	int width;
+	int height;
+	int types[5];
+
+	types[0] = 0;
+	types[1] = 0;
+	types[2] = 0;
+	types[3] = 0;
+	types[4] = 0;
+	if (ft_get_rush_size(str, &width, &height) == 0)
+	{
+		ft_putstr("Size error");
+	}
+	else if (ft_get_rush_type(str, width, height, types) == 0)
+	{
+		ft_putstr("Type error");
+	}
+	else if (ft_validate_rush(str, types, width, height) == 0)
+	{
+		ft_putstr("Valid error");
+	}
+	else
+		ft_display_result(types, width, height);
+}
+
+int		main(void)
+{
+	char	buf[32];
+	char	*res;
+	int		size;
 
 	res = NULL;
 	while ((size = read(0, &buf, 32)))
@@ -56,7 +77,6 @@ int	main()
 		buf[size] = '\0';
 		res = ft_strcat(res, buf);
 	}
-	printf("%s\n", res);
-	handler(res);
+	ft_handler(res);
 	return (0);
 }
