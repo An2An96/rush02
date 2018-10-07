@@ -6,24 +6,42 @@
 /*   By: elchrist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 18:03:43 by elchrist          #+#    #+#             */
-/*   Updated: 2018/10/06 18:12:34 by elchrist         ###   ########.fr       */
+/*   Updated: 2018/10/07 14:40:32 by ccumming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+int		ft_strlen(char *s1)
+{
+	int		i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
 
 char	*ft_strcat(char *dest, char *src)
 {
 	int	i;
-	int	j;
+	int j;
+	int	total_chars;
+	char *result;
 
+	total_chars = ft_strlen(dest) + ft_strlen(src);
+	result = (char *)malloc(sizeof(char) * (total_chars + 1));
 	i = 0;
-	while (dest[i])
-		i++;
-	j = 0;
-	while (src[j])
+	while (dest[i] != '\0')
 	{
-		dest[i + j] = src[j];
+		result[i] = dest[i];
+		i++;
+	}
+	j = 0;
+	while (src[j] != '\0')
+	{
+		result[i] = src[j];
+		i++;
 		j++;
 	}
-	dest[i + j] = '\0';
-	return (dest);
+	result[j] = '\0';
+	return (result);
 }
