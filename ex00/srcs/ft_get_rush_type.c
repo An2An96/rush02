@@ -6,7 +6,7 @@
 /*   By: elchrist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 14:32:03 by elchrist          #+#    #+#             */
-/*   Updated: 2018/10/07 15:03:57 by elchrist         ###   ########.fr       */
+/*   Updated: 2018/10/07 15:28:21 by elchrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,14 @@ int		ft_get_rush_type(char *str, int cols, int rows, int types[3])
 		types[1] = 3;
 		types[2] = 4;
 	}
-	else if (rows == 1 && str[lu] == 'A' && str[ru] == 'C'  && str[ld] == 'A' && str[rd] == 'C')
+	else if (rows == 1 && str[lu] == 'A' && str[ru] == 'C'  && str[ld] == 'A' && str[rd] == 'C') || \
+            (rows == 1 && str[lu] == 'A' && str[ru] == 'A'  && str[ld] == 'C' && str[rd] == 'C')
 	{
 		types[0] = 3;
 		types[1] = 4;
 	}
-	else if (cols == 1 && str[lu] == 'A' && str[ru] == 'C' && str[ld] == 'A' && str[rd] == 'C')
+	else if (cols == 1 && str[lu] == 'A' && str[ru] == 'C' && str[ld] == 'A' && str[rd] == 'C') || \
+            (cols == 1 && str[lu] == 'A' && str[ru] == 'A' && str[ld] == 'C' && str[rd] == 'C')
 	{
 		types[0] = 2;
 		types[1] = 4;
