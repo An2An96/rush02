@@ -11,7 +11,7 @@
 #******************************************************************************#
 
 NAME=rush02
-SRCS=srcs/main.c srcs/ft_get_rush_size.c srcs/ft_get_rush_type.c srcs/putstr.c
+SRCS=srcs/main.c srcs/ft_get_rush_size.c srcs/ft_get_rush_type.c srcs/utils.c
 INCLUDES=includes
 
 all:

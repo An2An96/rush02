@@ -46,17 +46,17 @@ void	handler(char *str)
 
 int	main()
 {
-	char buf[512];// = "ABC\nB B\nB B\nB B\nB B\nABC\n";
+	char buf[32];
 	char *res;
 	int size;
 
 	res = NULL;
-	while ((size = read(0, &buf, 512)))
+	while ((size = read(0, &buf, 32)))
 	{
 		buf[size] = '\0';
+		res = ft_strcat(res, buf);
 	}
-	res = buf;
-	printf("%s\n", buf);
-	handler(buf);
+	printf("%s\n", res);
+	handler(res);
 	return (0);
 }
