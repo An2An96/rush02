@@ -19,9 +19,6 @@
 # include <stdlib.h>
 
 # include "utils.h"
-
-int	ft_get_rush_size(char *str, int *width, int *height);
-int	ft_get_rush_type(char *str, int cols, int rows, int types[3]);
-int	ft_validate_rush(char *str, int types[5], int width, int height);
+# include "rush.h"
 
 #endif
