@@ -11,25 +11,52 @@
 /* ************************************************************************** */
 
 #include "main.h"
-#include <stdio.h>
 
-void	ft_handler(char *str)
+void	handler(char *str)
 {
-	int width;
-	int height;
-
-	if (!ft_get_rush_size(str, &width, &height))
+	//printf("handler start");
+	int i;
+	int cols;
+	int rows;
+	int types[3] = { -1, -1, -1 };
+	
+	if (ft_get_rush_size(str, &cols, &rows) == 0)
 	{
-		ft_putstr("Size error");
+		printf("Size error");
 	}
+	else if (ft_get_rush_type(str, cols, rows, types) == 0)
+	{
+		printf("Type error");
+	}
+	// else if (ft_valid(str, types, cols, rows) == 0)
+	// {
+	// 	printf("Valid error");
+	// }
 	else
 	{
-		printf("width: %d, height: %d", width, height);
+		i = 0;
+		while (types[i] != -1 && i < 3)
+		{
+			printf("%s[rush-%02d] [%d] [%d]", (i ? " || " : ""), types[i], cols, rows);
+			i++;
+		}
 	}
+	
 }
 
-int		main(void)
+int	main()
 {
-	ft_handler("o--o\n|  |\n|  |\no--o\n");
+	char buf[512];// = "ABC\nB B\nB B\nB B\nB B\nABC\n";
+	char *res;
+	int size;
+
+	res = NULL;
+	while ((size = read(0, &buf, 512)))
+	{
+		buf[size] = '\0';
+	}
+	res = buf;
+	printf("%s\n", buf);
+	handler(buf);
 	return (0);
 }

@@ -1,4 +1,4 @@
-int		ft_get_type(char *str, int cols, int rows, int types[3])
+int		ft_get_rush_type(char *str, int cols, int rows, int types[3])
 {
 	int lu = 0;
 	int ru = cols - 1;
