@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   rush.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rschuppe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/07 19:56:22 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/10/07 19:56:24 by rschuppe         ###   ########.fr       */
+/*   Created: 2018/10/07 21:33:30 by rschuppe          #+#    #+#             */
+/*   Updated: 2018/10/07 21:33:31 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef RUSH_H
+# define RUSH_H
 
-void	ft_putchar(char c);
-void	ft_putstr(char *str);
-void	ft_putnbr(int nb);
-int		ft_strlen(char *str);
-char	*ft_strcat(char *dest, char *src);
+void	ft_compute_extreme(int width, int height, int pos[4]);
+int		ft_get_rush_size(char *str, int *width, int *height);
+int		ft_validate_rush(char *str, int types[5], int width, int height);
+int		ft_get_rush_type(char *str, int width, int height, int types[5]);
 
 #endif

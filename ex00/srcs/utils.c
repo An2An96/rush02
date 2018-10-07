@@ -30,32 +30,46 @@ void	ft_putstr(char *str)
 	}
 }
 
+void	ft_putnbr(int nb)
+{
+	if (nb < 0)
+	{
+		nb = -nb;
+	}
+	if (nb >= 10)
+	{
+		ft_putnbr(nb / 10);
+		ft_putnbr(nb % 10);
+	}
+	else
+		ft_putchar(nb + '0');
+}
+
 int		ft_strlen(char *str)
 {
 	int		i;
 
-	i = 0;
-	while (str[i] != '\0')
-		i++;
+	if (str)
+	{
+		i = 0;
+		while (str[i] != '\0')
+			i++;
+	}
 	return (i);
 }
 
 char	*ft_strcat(char *dest, char *src)
 {
-	int	i;
-	int j;
-	int	total_chars;
-	char *result;
+	int		i;
+	int		j;
+	int		length;
+	char	*result;
 
-	total_chars = 0;
-	if (dest)
-		total_chars += ft_strlen(dest);
-	total_chars += ft_strlen(src);
-	result = (char*)malloc(sizeof(char) * (total_chars + 1));
+	length = ft_strlen(dest) + ft_strlen(src);
+	result = (char*)malloc(length + 1 * sizeof(char));
 	if (result)
 	{
 		i = 0;
-
 		while (dest && dest[i] != '\0')
 		{
 			result[i] = dest[i];
@@ -63,13 +77,8 @@ char	*ft_strcat(char *dest, char *src)
 		}
 		j = 0;
 		while (src[j] != '\0')
-		{
-			result[i] = src[j];
-			i++;
-			j++;
-		}
+			result[i++] = src[j++];
 		result[i] = '\0';
-		
 		if (dest)
 			free(dest);
 	}

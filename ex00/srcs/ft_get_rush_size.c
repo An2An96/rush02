@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "rush.h"
+
 int	ft_get_rush_size(char *str, int *width, int *height)
 {
 	int i;
@@ -18,7 +20,7 @@ int	ft_get_rush_size(char *str, int *width, int *height)
 	i = 0;
 	width_temp = 0;
 	*width = 0;
-	*height = 1;
+	*height = 0;
 	while (str[i] != '\0')
 	{
 		if (str[i] == '\n')

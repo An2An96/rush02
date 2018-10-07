@@ -50,17 +50,11 @@ void	ft_handler(char *str)
 	types[3] = 0;
 	types[4] = 0;
 	if (ft_get_rush_size(str, &width, &height) == 0)
-	{
 		ft_putstr("Size error");
-	}
 	else if (ft_get_rush_type(str, width, height, types) == 0)
-	{
 		ft_putstr("Type error");
-	}
 	else if (ft_validate_rush(str, types, width, height) == 0)
-	{
 		ft_putstr("Valid error");
-	}
 	else
 		ft_display_result(types, width, height);
 }
@@ -78,5 +72,6 @@ int		main(void)
 		res = ft_strcat(res, buf);
 	}
 	ft_handler(res);
+	ft_putchar('\n');
 	return (0);
 }

@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "rush.h"
+
 void	ft_compute_extreme(int width, int height, int pos[4])
 {
 	pos[0] = 0;
