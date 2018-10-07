@@ -51,7 +51,7 @@ int		ft_strlen(char *str)
 
 	i = 0;
 	if (str)
-	{	
+	{
 		while (str[i] != '\0')
 			i++;
 	}
