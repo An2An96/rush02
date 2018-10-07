@@ -10,59 +10,71 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_get_rush_type(char *str, int cols, int rows, int types[3])
+void	ft_compute_extreme(int width, int height, int pos[4])
 {
-	int lu;
-	int ru;
-	int ld;
-	int rd;
+	pos[0] = 0;
+	pos[1] = width - 1;
+	pos[2] = (width + 1) * (height - 1);
+	pos[3] = ((width + 1) * height) - 2;
+}
 
-	lu = 0;
-	ru = cols - 1;
-	ld = (cols + 1) * (rows - 1);
-	rd = ((cols + 1) * rows) - 2;
-	if (str[lu] == 'o' && str[ru] == 'o' && str[ld] == 'o' && str[rd] == 'o')
+int		ft_check_extreme(char *str, int pos[4], char symb[4])
+{
+	if (str[pos[0]] == symb[0] && str[pos[1]] == symb[1]
+		&& str[pos[2]] == symb[2] && str[pos[3]] == symb[3])
 	{
-		types[0] = 0;
 		return (1);
-	}
-	else if (str[lu] == '/' && str[ru] == '\\' && str[ld] == '\\' && str[rd] == '/')
-	{
-		types[0] = 1;
-		return (1);
-	}
-	else if (str[lu] == 'A' && str[ru] == 'A' && str[ld] == 'C' && str[rd] == 'C')
-	{
-		types[0] = 2;
-		return (1);
-	}
-	else if (str[lu] == 'A' && str[ru] == 'C' && str[ld] == 'A' && str[rd] == 'C')
-	{
-		types[0] = 3;
-		return (1);
-	}
-	else if (str[lu] == 'A' && str[ru] == 'C' && str[ld] == 'C' && str[rd] == 'A')
-	{
-		types[0] = 4;
-		return (1);
-	}
-	else if (str[lu] == 'A' && str[ru] == 'A' && str[ld] == 'A' && str[rd] == 'A')
-	{
-		types[0] = 2;
-		types[1] = 3;
-		types[2] = 4;
-	}
-	else if (rows == 1 && str[lu] == 'A' && str[ru] == 'C'  && str[ld] == 'A' && str[rd] == 'C') || \
-            (rows == 1 && str[lu] == 'A' && str[ru] == 'A'  && str[ld] == 'C' && str[rd] == 'C')
-	{
-		types[0] = 3;
-		types[1] = 4;
-	}
-	else if (cols == 1 && str[lu] == 'A' && str[ru] == 'C' && str[ld] == 'A' && str[rd] == 'C') || \
-            (cols == 1 && str[lu] == 'A' && str[ru] == 'A' && str[ld] == 'C' && str[rd] == 'C')
-	{
-		types[0] = 2;
-		types[1] = 4;
 	}
 	return (0);
+}
+
+void	ft_get_rush_type_1(char *str, int width, int height, int types[5])
+{
+	int pos[4];
+
+	ft_compute_extreme(width, height, pos);
+	if (ft_check_extreme(str, pos, "oooo"))
+		types[0] = 1;
+	else if (ft_check_extreme(str, pos, "/\\\\/"))
+		types[1] = 1;
+	else if (ft_check_extreme(str, pos, "AACC"))
+		types[2] = 1;
+	else if (ft_check_extreme(str, pos, "ACAC"))
+		types[3] = 1;
+	else if (ft_check_extreme(str, pos, "ACCA"))
+		types[4] = 1;
+}
+
+void	ft_get_rush_type_2(char *str, int width, int height, int types[5])
+{
+	int pos[4];
+
+	ft_compute_extreme(width, height, pos);
+	if (ft_check_extreme(str, pos, "AAAA"))
+	{
+		types[2] = 1;
+		types[3] = 1;
+		types[4] = 1;
+	}
+	else if (height == 1
+		&& (ft_check_extreme(str, pos, "ACAC")
+		|| ft_check_extreme(str, pos, "AACC")))
+	{
+		types[3] = 1;
+		types[4] = 1;
+	}
+	else if (width == 1
+		&& (ft_check_extreme(str, pos, "ACAC")
+		|| ft_check_extreme(str, pos, "AACC")))
+	{
+		types[2] = 1;
+		types[4] = 1;
+	}
+}
+
+int		ft_get_rush_type(char *str, int width, int height, int types[5])
+{
+	ft_get_rush_type_1(str, width, height, types);
+	ft_get_rush_type_2(str, width, height, types);
+	return (types[0] || types[1] || types[2] || types[3] || types[4]);
 }
